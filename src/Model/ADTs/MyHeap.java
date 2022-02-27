@@ -27,22 +27,22 @@ public class MyHeap<V> implements HeapInterface<V>{
 
     @Override
     public int allocate(V value) {
-        synchronized (this) {
+        //synchronized (this) {
             int address = this.freeLocation;
             this.freeLocation++;
             this.heap.put(address, value);
 
             return address;
-        }
+        //}
     }
 
     @Override
     public V deallocate(int address) throws ADTsExceptions {
-        synchronized (this) {
+        //synchronized (this) {
             if (isAddress(address))
                 this.heap.remove(address);
             throw new ADTsExceptions("Cannot deallocate a non-existent address!");
-        }
+       // }
     }
 
     @Override
@@ -52,9 +52,9 @@ public class MyHeap<V> implements HeapInterface<V>{
 
     @Override
     public void put(int address, V value) {
-        synchronized (this) {
+        //synchronized (this) {
             this.heap.put(address, value);
-        }
+        //}
     }
 
     @Override
@@ -69,25 +69,25 @@ public class MyHeap<V> implements HeapInterface<V>{
 
     @Override
     public void setContent(Map<Integer, V> newContent) {
-        synchronized (this) {
+        //synchronized (this) {
             this.heap = newContent;
-        }
+        //}
     }
 
     @Override
     public void update(int address, V value) {
-        synchronized (this) {
+        //synchronized (this) {
             V val = heap.get(address);
             heap.put(address, value);
-        }
+        //}
     }
 
     @Override
     public void remove(int address) {
-        synchronized (this) {
+        //synchronized (this) {
             if (isAddress(address))
                 heap.remove(address);
-        }
+        //}
 
     }
 
